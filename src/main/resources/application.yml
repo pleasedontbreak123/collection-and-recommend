@@ -5,8 +5,20 @@ server:
   port: 8080
 
 spring:
-  mvc:
-    pathmatch:
-      matching-strategy: ant_path_matcher
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://localhost:3306/collection-and-recommend?severTimezone=UTC
+    username: root
+    password: 1234
 
 
+logging:
+  level:
+    root: info
+    com.example: debug  # 只针对 com.example 包的类输出 debug 级别日志
+  file:
+    name: logs/app.log   # 日志文件存储路径
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - [%thread] %-5level %logger{36} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} - [%thread] %-5level %logger{36} - %msg%n"

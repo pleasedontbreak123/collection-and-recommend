@@ -1,6 +1,6 @@
 package org.example.collectionandrecommend.demos.web.exception;
 
-import org.example.collectionandrecommend.demos.web.utils.Result;
+import org.example.collectionandrecommend.demos.web.response.Result;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
