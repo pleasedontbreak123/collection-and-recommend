@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.collectionandrecommend.demos.web.mapper.EventMapper">
+
+
+    <insert id="addCateForEvent">
+        INSERT INTO event_category_relations ( event_id, category_id, created_at,status)
+        VALUES
+        <foreach collection="categoryIds" item="categoryId" separator=",">
+            (#{eventId},#{categoryId},#{localDateTime},'ACTIVE')
+        </foreach>
+
+    </insert>
+</mapper>

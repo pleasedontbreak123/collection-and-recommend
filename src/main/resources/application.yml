@@ -4,13 +4,13 @@
 server:
   port: 8080
 
-#spring:
-#  datasource:
-#    driver-class-name: com.mysql.cj.jdbc.Driver
-#    type: com.alibaba.druid.pool.DruidDataSource
-#    url: jdbc:mysql://localhost:3306/collection-and-recommend?severTimezone=UTC
-#    username: root
-#    password: 1234
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://localhost:3306/collection-and-recommend?severTimezone=UTC
+    username: root
+    password: 1234
 
 
 logging:
@@ -22,3 +22,7 @@ logging:
   pattern:
     console: "%d{yyyy-MM-dd HH:mm:ss} - [%thread] %-5level %logger{36} - %msg%n"
     file: "%d{yyyy-MM-dd HH:mm:ss} - [%thread] %-5level %logger{36} - %msg%n"
+
+mybatis:
+  mapper-locations: classpath:/mappers/**/*.xml
+  type-aliases-package: com.example.demo.model
