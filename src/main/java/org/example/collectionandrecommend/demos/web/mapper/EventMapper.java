@@ -1,7 +1,6 @@
 package org.example.collectionandrecommend.demos.web.mapper;
 
 import org.apache.ibatis.annotations.*;
-import org.example.collectionandrecommend.demos.web.model.dto.EventDto;
 import org.example.collectionandrecommend.demos.web.model.dto.EventFilterDto;
 import org.example.collectionandrecommend.demos.web.model.entity.Event;
 import org.example.collectionandrecommend.demos.web.model.vo.EventVo;
@@ -33,4 +32,16 @@ public interface EventMapper {
     void addCateForEvent(@Param("eventId")int eventId,@Param("categoryIds") List<Integer> categoryIds,@Param("localDateTime") LocalDateTime localDateTime);
 
     List<EventVo> eventFilter(EventFilterDto eventFilterDto);
+
+    @Update("UPDATE events " +
+            "SET " +
+            "    title = #{title}," +
+            "    description = #{description}," +
+            "    start_time = #{startTime}," +
+            "    end_time = #{endTime}," +
+            "    organizer = #{organizer}," +
+            "    status = #{status}," +
+            "    updated_at = #{updatedAt} "+
+            "WHERE event_id = #{eventId};")
+    int update(Event event);
 }

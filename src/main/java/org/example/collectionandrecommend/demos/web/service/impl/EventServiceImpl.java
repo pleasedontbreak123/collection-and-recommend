@@ -4,21 +4,18 @@ package org.example.collectionandrecommend.demos.web.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.java.Log;
 import org.apache.ibatis.session.SqlSessionException;
 import org.example.collectionandrecommend.demos.web.exception.CustomException;
 import org.example.collectionandrecommend.demos.web.mapper.EventMapper;
 import org.example.collectionandrecommend.demos.web.model.dto.EventDto;
 import org.example.collectionandrecommend.demos.web.model.dto.EventFilterDto;
 import org.example.collectionandrecommend.demos.web.model.entity.Event;
-import org.example.collectionandrecommend.demos.web.model.vo.EventCategoryVo;
 import org.example.collectionandrecommend.demos.web.model.vo.EventVo;
 import org.example.collectionandrecommend.demos.web.service.EventService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.validation.constraints.Null;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -71,11 +68,24 @@ public class EventServiceImpl implements EventService {
         List<EventVo> resList;
 
         resList = eventMapper.eventFilter(eventFilterDto);
-        if (resList.isEmpty() || resList == null){
+        if (resList.isEmpty()){
             throw new CustomException(3001,"无符合要求的选项");
         }
 
-        PageInfo<EventVo> pageInfo = new PageInfo<>(resList);
-        return pageInfo;
+        return new PageInfo<>(resList);
+    }
+
+    @Override
+    public void update(EventDto eventDto) {
+        if (eventDto.getEventId() == null){
+            throw new CustomException(400,"无效请求:赛事id不能为空");
+        }
+
+        Event event = new Event();
+        BeanUtils.copyProperties(eventDto,event);
+        event.setUpdatedAt(LocalDateTime.now());
+        if(eventMapper.update(event) == 0){
+            throw new CustomException(3003,"重复信息无效更新");
+        }
     }
 }

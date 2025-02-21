@@ -5,10 +5,8 @@ import com.github.pagehelper.PageInfo;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.example.collectionandrecommend.demos.web.exception.CustomException;
 import org.example.collectionandrecommend.demos.web.model.dto.EventDto;
 import org.example.collectionandrecommend.demos.web.model.dto.EventFilterDto;
-import org.example.collectionandrecommend.demos.web.model.vo.EventCategoryVo;
 import org.example.collectionandrecommend.demos.web.model.vo.EventVo;
 import org.example.collectionandrecommend.demos.web.response.Result;
 import org.example.collectionandrecommend.demos.web.service.EventService;
@@ -16,7 +14,6 @@ import org.example.collectionandrecommend.demos.web.utils.aop.LogAnnotation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Slf4j
@@ -53,5 +50,12 @@ public class EventController {
         return Result.success("查询结果：",pageInfo);
     }
 
+    @LogAnnotation("更新&删除 赛事")
+    @PostMapping("/updateEvent")
+    @Operation(description = "更新&删除 赛事")
+    public Result update(@RequestBody EventDto eventDto){
+        eventService.update(eventDto);
+        return Result.success("更新成功");
+    }
 
 }
