@@ -13,4 +13,54 @@
         </foreach>
 
     </insert>
+
+    <select id="eventFilter"  resultMap="fromEvents">
+        SELECT e.event_id, e.title, e.description, e.start_time, e.end_time, e.organizer
+        FROM events e
+        LEFT JOIN event_category_relations ecr ON e.event_id = ecr.event_id
+        LEFT JOIN event_categories ec ON ecr.category_id = ec.category_id
+        WHERE 1 = 1
+        AND e.status != 'DELETED'
+        <if test="categoryId != null">
+            AND ecr.category_id = #{categoryId}
+        </if>
+        <if test="startTime != null">
+            AND e.start_time >= #{startTime}
+        </if>
+        <if test="endTime != null">
+            AND #{endTime} >= e.end_time
+        </if>
+        <if test="keywords != null and keywords != ''">
+            AND (e.title LIKE CONCAT('%', #{keywords}, '%') OR e.description LIKE CONCAT('%', #{keywords}, '%'))
+        </if>
+    </select>
+
+    <resultMap id="fromEvents" type="org.example.collectionandrecommend.demos.web.model.vo.EventVo">
+        <id property="eventId" column="event_id"/>
+        <result property="title" column="title"/>
+        <result property="description" column="description"/>
+        <result property="startTime" column="start_time"/>
+        <result property="endTime" column="end_time"/>
+        <result property="organizer" column="organizer"/>
+        <!-- 关联的分类列表 -->
+        <collection property="categoryList" ofType="org.example.collectionandrecommend.demos.web.model.vo.EventCategoryVo"
+                    column="event_id" select="fromEventCate"/>
+        <!--    关联图片列表-->
+        <collection property="imageList" ofType="org.example.collectionandrecommend.demos.web.model.entity.EventImage"
+                    column="event_id" select="fromEventImage"/>
+    </resultMap>
+
+    <select id="fromEventCate" parameterType="int" resultType="org.example.collectionandrecommend.demos.web.model.vo.EventCategoryVo">
+        SELECT ec.category_id AS eventCategoryId, ec.category_name AS categoryName
+        FROM event_categories ec
+        JOIN event_category_relations ecr ON ec.category_id = ecr.category_id
+        WHERE event_id = #{eventId}
+        AND ec.status != 'DELETED'
+    </select>
+
+    <select id="fromEventImage" parameterType="int" resultType="org.example.collectionandrecommend.demos.web.model.entity.EventImage">
+        SELECT ei.image_id AS imageId ,ei.event_id AS eventId,ei.image_url AS imageUrl,ei.image_type AS imageType
+        FROM event_images ei
+        WHERE ei.event_id = #{eventId}
+    </select>
 </mapper>

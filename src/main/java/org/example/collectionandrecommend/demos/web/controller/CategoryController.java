@@ -38,4 +38,12 @@ public class CategoryController {
         PageInfo<EventCategoryVo> pageInfo = categoryService.listAll(pageNum,pageSize);
         return Result.success("查询结果 ：",pageInfo);
     }
+
+    @Operation(description = "删除指定分类并删除分类关系")
+    @PostMapping("/delete")
+    public Result deleteCate(@RequestParam Integer CateId){
+        categoryService.delete(CateId);
+        return Result.success("已删除"+CateId+"分类已经分类关系");
+
+    }
 }

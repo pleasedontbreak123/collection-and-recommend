@@ -24,7 +24,7 @@ public class EventVo {
 
     private String organizer;
 
-    private List<Integer> categoryList;
+    private List<EventCategoryVo> categoryList;
 
     private List<EventImage> imageList;
 

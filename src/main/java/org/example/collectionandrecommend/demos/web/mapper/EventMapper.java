@@ -2,7 +2,9 @@ package org.example.collectionandrecommend.demos.web.mapper;
 
 import org.apache.ibatis.annotations.*;
 import org.example.collectionandrecommend.demos.web.model.dto.EventDto;
+import org.example.collectionandrecommend.demos.web.model.dto.EventFilterDto;
 import org.example.collectionandrecommend.demos.web.model.entity.Event;
+import org.example.collectionandrecommend.demos.web.model.vo.EventVo;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -29,4 +31,6 @@ public interface EventMapper {
     List<Event> findAll();
 
     void addCateForEvent(@Param("eventId")int eventId,@Param("categoryIds") List<Integer> categoryIds,@Param("localDateTime") LocalDateTime localDateTime);
+
+    List<EventVo> eventFilter(EventFilterDto eventFilterDto);
 }

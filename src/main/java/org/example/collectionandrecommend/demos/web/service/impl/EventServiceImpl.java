@@ -1,13 +1,18 @@
 package org.example.collectionandrecommend.demos.web.service.impl;
 
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
 import org.apache.ibatis.session.SqlSessionException;
 import org.example.collectionandrecommend.demos.web.exception.CustomException;
 import org.example.collectionandrecommend.demos.web.mapper.EventMapper;
 import org.example.collectionandrecommend.demos.web.model.dto.EventDto;
+import org.example.collectionandrecommend.demos.web.model.dto.EventFilterDto;
 import org.example.collectionandrecommend.demos.web.model.entity.Event;
+import org.example.collectionandrecommend.demos.web.model.vo.EventCategoryVo;
+import org.example.collectionandrecommend.demos.web.model.vo.EventVo;
 import org.example.collectionandrecommend.demos.web.service.EventService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,5 +60,22 @@ public class EventServiceImpl implements EventService {
             throw new CustomException(500, "服务器内部错误");
         }
 
+    }
+
+    @Override
+    public PageInfo<EventVo> eventFilter(EventFilterDto eventFilterDto,int pageNum, int pageSize) throws CustomException{
+
+        // 启动分页查询
+        PageHelper.startPage(pageNum, pageSize);
+
+        List<EventVo> resList;
+
+        resList = eventMapper.eventFilter(eventFilterDto);
+        if (resList.isEmpty() || resList == null){
+            throw new CustomException(3001,"无符合要求的选项");
+        }
+
+        PageInfo<EventVo> pageInfo = new PageInfo<>(resList);
+        return pageInfo;
     }
 }

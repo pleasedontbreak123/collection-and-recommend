@@ -19,4 +19,10 @@ public interface EventCategoryMapper {
             @Result(property = "categoryName", column = "category_name"),
     })
     List<EventCategoryVo> findAll();
+
+    @Update("UPDATE event_categories set status = 'DELETED' where category_id = #{cateId}")
+    int deleteCate(Integer cateId);
+
+    @Update("update event_category_relations set status = 'DELETED' where category_id = #{cateId}")
+    int deleteRelation(Integer cateId);
 }

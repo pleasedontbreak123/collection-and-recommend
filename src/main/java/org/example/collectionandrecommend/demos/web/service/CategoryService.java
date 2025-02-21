@@ -12,4 +12,6 @@ public interface CategoryService {
     void addCate(EventCategoryDto eventCategoryDto) throws CustomException;
 
     PageInfo<EventCategoryVo> listAll(int pageNum, int pageSize) throws CustomException;
+
+    void delete(Integer cateId) throws CustomException;
 }

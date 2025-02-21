@@ -1,7 +1,10 @@
 package org.example.collectionandrecommend;
 
+import org.example.collectionandrecommend.demos.web.mapper.EventCategoryMapper;
 import org.example.collectionandrecommend.demos.web.mapper.EventMapper;
 import org.example.collectionandrecommend.demos.web.model.dto.EventDto;
+import org.example.collectionandrecommend.demos.web.model.dto.EventFilterDto;
+import org.example.collectionandrecommend.demos.web.model.vo.EventVo;
 import org.example.collectionandrecommend.demos.web.service.EventService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,17 +20,19 @@ class CollectionAndRecommendApplicationTests {
     @Autowired
     private EventMapper eventMapper;
     @Autowired
+    private EventCategoryMapper eventCategoryMapper;
+    @Autowired
     private EventService eventService;
 
 
     @Test
     void contextLoads() {
-        List<Integer> list = new ArrayList<>();
-        list.add(1);
-        list.add(2);
-        list.add(3);
+        EventFilterDto eventFilterDto = new EventFilterDto();
+        eventFilterDto.setCategoryId(0);
+        //eventFilterDto.setKeywords("2");
 
-        eventMapper.addCateForEvent(1,list,LocalDateTime.now());
+       List<EventVo> list =  eventMapper.eventFilter(eventFilterDto);
+       System.out.println(list);
     }
 
 }
