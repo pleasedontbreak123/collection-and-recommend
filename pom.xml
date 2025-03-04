@@ -58,10 +58,17 @@
             <version>1.7.0</version>
         </dependency>
 
+<!--        <dependency>-->
+<!--            <groupId>com.github.pagehelper</groupId>-->
+<!--            <artifactId>pagehelper</artifactId>-->
+<!--            <version>5.2.0</version>-->
+<!--        </dependency>-->
+
+        <!-- 使用 pagehelper-spring-boot-starter（推荐） -->
         <dependency>
             <groupId>com.github.pagehelper</groupId>
-            <artifactId>pagehelper</artifactId>
-            <version>5.2.0</version>
+            <artifactId>pagehelper-spring-boot-starter</artifactId>
+            <version>1.4.6</version>
         </dependency>
 
 
