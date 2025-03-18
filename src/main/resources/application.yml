@@ -8,9 +8,9 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
-    url: jdbc:mysql://localhost:3306/架构_name?serverTimezone=UTC&allowPublicKeyRetrieval=true
-    username: root
-    password: hj123456
+    url: jdbc:mysql://118.190.154.246:3306/recommend?serverTimezone=UTC&allowPublicKeyRetrieval=true
+    username: recommend
+    password: 123456
 
 
 logging:
