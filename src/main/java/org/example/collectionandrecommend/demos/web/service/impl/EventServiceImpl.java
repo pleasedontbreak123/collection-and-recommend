@@ -88,4 +88,9 @@ public class EventServiceImpl implements EventService {
             throw new CustomException(3003,"重复信息无效更新");
         }
     }
+
+    @Override
+    public EventVo getById(Integer id) {
+        return eventMapper.getById(id);
+    }
 }

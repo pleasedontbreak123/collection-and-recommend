@@ -51,6 +51,15 @@ public class EventController {
         return Result.success("查询结果：",pageInfo);
     }
 
+    @LogAnnotation("展示赛事")
+    @GetMapping("/getEventByid")
+    @Operation(description = "分类筛选 & 按时间时间筛选 &关键字搜索展示赛事")
+    public Result getById(@RequestParam Integer id){
+
+        EventVo res = eventService.getById(id);
+        return Result.success("查询结果：",res);
+    }
+
     @LogAnnotation("更新&删除 赛事")
     @PostMapping("/updateEvent")
     @Operation(description = "更新&删除 赛事")

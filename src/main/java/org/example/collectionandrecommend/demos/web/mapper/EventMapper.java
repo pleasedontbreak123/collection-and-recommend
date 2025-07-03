@@ -44,4 +44,18 @@ public interface EventMapper {
             "    updated_at = #{updatedAt} "+
             "WHERE event_id = #{eventId};")
     int update(Event event);
+
+    @Select("SELECT * FROM events where event_id = #{id}")
+    @Results({
+            @Result(property = "eventId", column = "event_id"),
+            @Result(property = "title", column = "title"),
+            @Result(property = "description", column = "description"),
+            @Result(property = "startTime", column = "start_time"),
+            @Result(property = "endTime", column = "end_time"),
+            @Result(property = "organizer", column = "organizer"),
+            //@Result(property = "status", column = "status"),
+//            @Result(property = "createdAt", column = "created_at"),
+//            @Result(property = "updatedAt", column = "updated_at")
+    })
+    EventVo getById(Integer id);
 }

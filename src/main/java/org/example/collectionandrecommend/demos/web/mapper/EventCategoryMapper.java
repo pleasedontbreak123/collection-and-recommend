@@ -15,7 +15,7 @@ public interface EventCategoryMapper {
 
     @Select("SELECT * FROM event_categories where status = 'ACTIVE'")
     @Results({
-            @Result(property = "eventCategoryId", column = "event_id"),
+            @Result(property = "eventCategoryId", column = "category_id"),
             @Result(property = "categoryName", column = "category_name"),
     })
     List<EventCategoryVo> findAll();

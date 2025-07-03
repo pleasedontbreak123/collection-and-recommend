@@ -16,4 +16,6 @@ public interface EventService {
     PageInfo<EventVo> eventFilter(EventFilterDto eventFilterDto,int pageNum, int pageSize) throws CustomException;
 
     void update(EventDto eventDto);
+
+    EventVo getById(Integer id);
 }
