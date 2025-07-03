@@ -14,6 +14,7 @@ import org.example.collectionandrecommend.demos.web.utils.aop.LogAnnotation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+
 @Slf4j
 @RestController
 @RequestMapping("/category")
