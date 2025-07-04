@@ -16,8 +16,8 @@ public class AiClient {
 
 //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
     //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
-
-    private static final String apiKey = "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";
+//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
+    private static final String apiKey = "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";
 
 
 

@@ -1,6 +1,8 @@
 package org.example.collectionandrecommend.demos.web.service.impl;
 
 import org.example.collectionandrecommend.demos.web.model.dto.UserDto;
+import org.example.collectionandrecommend.demos.web.model.dto.UserFavorDto;
+import org.example.collectionandrecommend.demos.web.model.entity.UserFavor;
 import org.example.collectionandrecommend.demos.web.model.vo.UserVo;
 import org.example.collectionandrecommend.demos.web.service.UserService;
 import org.example.collectionandrecommend.demos.web.model.entity.User;
@@ -14,7 +16,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.beans.BeanUtils;
 
+import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -89,9 +93,23 @@ public class UserServiceImpl implements UserService {
         BeanUtils.copyProperties(user, userVo);
 
         // 生成JWT Token
-        String token = JwtUtil.generateToken(user.getUsername());
+        String token = JwtUtil.generateToken(user.getId());
         userVo.setToken(token);
 
         return userVo;
+    }
+
+    @Override
+    public void addFavor(UserFavorDto userFavorDto) {
+        UserFavor userFavor = new UserFavor();
+        BeanUtils.copyProperties(userFavorDto,userFavor);
+        userFavor.setCreatedAt(LocalDateTime.now());
+        userMapper.insertFavor(userFavor);
+    }
+
+    @Override
+    public List<Integer> listFavor(Integer userId) {
+        List<Integer> list = userMapper.listFavor(userId);
+        return list;
     }
 }

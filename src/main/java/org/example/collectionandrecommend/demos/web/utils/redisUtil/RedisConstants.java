@@ -1,4 +1,4 @@
-package org.example.collectionandrecommend.demos.web.utils;
+package org.example.collectionandrecommend.demos.web.utils.redisUtil;
 
 public class RedisConstants {
     public static final long CACHE_NULL_TTL = 5; // 单位：分钟

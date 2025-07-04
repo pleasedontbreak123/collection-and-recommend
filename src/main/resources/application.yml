@@ -26,7 +26,7 @@ logging:
 mybatis:
   type-aliases-package: com.example.demo.model
   configuration:
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl  # 显示 SQL 日志
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl  # 显示 SQL 日志
     map-underscore-to-camel-case: true  # 开启驼峰命名映射
 
 

@@ -8,7 +8,7 @@ import org.example.collectionandrecommend.demos.web.mapper.PostMapper;
 import org.example.collectionandrecommend.demos.web.model.dto.PostDTO;
 import org.example.collectionandrecommend.demos.web.model.entity.Post;
 import org.example.collectionandrecommend.demos.web.model.vo.PostVO;
-import org.example.collectionandrecommend.demos.web.service.PostService;
+import org.example.collectionandrecommend.demos.web.utils.redisUtil.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

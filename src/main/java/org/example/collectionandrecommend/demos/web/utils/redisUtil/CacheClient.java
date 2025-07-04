@@ -1,4 +1,4 @@
-package org.example.collectionandrecommend.demos.web.utils;
+package org.example.collectionandrecommend.demos.web.utils.redisUtil;
 
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONObject;

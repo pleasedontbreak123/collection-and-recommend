@@ -1,4 +1,4 @@
-package org.example.collectionandrecommend.demos.web.service;
+package org.example.collectionandrecommend.demos.web.utils.redisUtil;
 
 
 import com.github.pagehelper.PageInfo;

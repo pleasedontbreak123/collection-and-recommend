@@ -6,12 +6,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.example.collectionandrecommend.demos.web.model.dto.PostDTO;
 import org.example.collectionandrecommend.demos.web.model.vo.PostVO;
 import org.example.collectionandrecommend.demos.web.response.Result;
-import org.example.collectionandrecommend.demos.web.service.PostService;
+import org.example.collectionandrecommend.demos.web.utils.redisUtil.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Slf4j
